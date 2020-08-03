@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home!{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('error') %}
+        <div class="flash-error">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <ul>
+    {% for comment in comments %}
+        <li>{{ comment['name'] }} -> {{ comment['email'] }}</li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}
