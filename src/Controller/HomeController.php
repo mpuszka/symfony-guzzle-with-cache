@@ -26,7 +26,14 @@ class HomeController extends AbstractController
 
         if (!$cacheData->isHit()) {
             $client         = new Client();
-            $response       = $client->get('https://jsonplaceholder.typicode.com/comments');
+
+            try {
+                $response = $client->get('https://jsonplaceholder.typicode.com/comments');
+                
+            } catch (\Exception $e) {
+                throw new \Exception ($e->getMessage());
+            }
+            
             $responseCode   = $response->getStatusCode();
             $comments       = [];
 
